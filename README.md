@@ -40,6 +40,9 @@ Hệ thống cho phép nạp file Microsoft Word (`.docx`), xem trước cấu t
 
 ```
 fengmix/
+├── api/                      # Serverless entrypoint cho Vercel Cloud
+│   ├── index.py              # Vercel Serverless Function (FastAPI)
+│   └── requirements.txt      # Dependency cho Vercel runtime
 ├── backend/                  # Mã nguồn Backend (FastAPI, Python)
 │   ├── main.py               # FastAPI entrypoint & router API
 │   ├── ym_core.py            # Parser Word, bộ hoán vị và xuất docx/xlsx/qr
@@ -56,6 +59,7 @@ fengmix/
 ├── start.bat                 # Script tự động cài thư viện & chạy trên Windows
 ├── run_windows.bat           # Phím tắt khởi chạy nhanh trên Windows
 ├── start.sh                  # Script khởi động nhanh server trên Linux / macOS
+├── vercel.json               # Cấu hình triển khai Vercel (routing, functions)
 ├── requirements.txt          # Danh sách thư viện Python dùng cho cài đặt nhanh
 ├── requirements.md           # Hướng dẫn chi tiết về các thư viện phụ thuộc
 ├── .gitignore                # Cấu hình bỏ qua các file tạm, cache
@@ -105,10 +109,31 @@ python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
-### 4. Truy cập giao diện Web
-Sau khi khởi động server, mở trình duyệt web và truy cập:
+### 4. Triển khai trực tuyến lên Vercel (`fengmix.vercel.app`)
 
-👉 **[http://localhost:8000](http://localhost:8000)** (hoặc cổng bạn đã thiết lập)
+Dự án đã được cấu hình sẵn sàng cho **Vercel Serverless Architecture** (`vercel.json` + `api/index.py`):
+
+1. **Cách 1: Triển khai 1-Click qua GitHub (Khuyên dùng - Tự động cập nhật khi push code):**
+   - Đăng nhập vào [Vercel](https://vercel.com).
+   - Chọn **Add New...** ➔ **Project**.
+   - Chọn import repository `phongatrix/fengmix`.
+   - Đặt **Project Name** là `fengmix` (Vercel sẽ tự động cấp domain: `https://fengmix.vercel.app`).
+   - Bấm **Deploy**. Vercel sẽ tự động build và online trong vòng 30 giây!
+   - Từ nay về sau, mỗi khi bạn `git push` code mới lên GitHub, Vercel sẽ tự động build lại phiên bản mới nhất.
+
+2. **Cách 2: Triển khai nhanh bằng Vercel CLI:**
+   ```bash
+   npx vercel login
+   npx vercel --prod
+   ```
+
+3. **Lưu ý về tên miền:**
+   - Vercel cấp tên miền miễn phí dạng `*.vercel.app` (ví dụ: `fengmix.vercel.app`).
+   - Nếu bạn muốn dùng tên miền riêng (ví dụ: `fengmix.com` hoặc `fengmix.edu.vn`), chỉ cần vào mục **Settings ➔ Domains** trên Vercel Dashboard và thêm tên miền của bạn.
+
+---
+
+### 5. Truy cập giao diện Web nội bộ
 
 ---
 
