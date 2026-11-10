@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# YoungMix Clone - Start Script
+# Feng Mix - Start Script
 # Usage: bash start.sh [port]
 
 PORT=${1:-8000}
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKEND="$SCRIPT_DIR/backend"
 
-echo "🎓 YoungMix Clone - Trộn đề trắc nghiệm"
-echo "========================================"
+echo "🎓 Feng Mix - Trộn đề trắc nghiệm Online"
+echo "=========================================="
 
 # Check Python 3
 if ! command -v python3 &>/dev/null; then

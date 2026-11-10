@@ -53,55 +53,52 @@ fengmix/
 │   ├── style.css             # Thiết kế giao diện hiện đại, tinh tế
 │   └── app.js                # Xử lý tương tác, xem trước, sửa đề và gọi API
 ├── samples/                  # Các file đề mẫu chuẩn (Địa lý, Tin học...)
+├── start.bat                 # Script tự động cài thư viện & chạy trên Windows
+├── run_windows.bat           # Phím tắt khởi chạy nhanh trên Windows
 ├── start.sh                  # Script khởi động nhanh server trên Linux / macOS
+├── requirements.txt          # Danh sách thư viện Python dùng cho cài đặt nhanh
+├── requirements.md           # Hướng dẫn chi tiết về các thư viện phụ thuộc
 ├── .gitignore                # Cấu hình bỏ qua các file tạm, cache
 └── README.md                 # Hướng dẫn cài đặt và sử dụng
 ```
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt & Chạy
+## 🚀 Hướng Dẫn Cài Đặt & Chạy Tự Động
 
-### 1. Yêu cầu hệ thống
-- **Python:** Phiên bản `3.9` trở lên (Khuyên dùng Python 3.10, 3.11 hoặc 3.12).
-- **Hệ điều hành:** Linux, macOS, hoặc Windows.
+### 1. Dành cho người dùng Windows (Tự động 100%)
 
-### 2. Cài đặt các thư viện phụ thuộc
+Chỉ cần nhấp đúp (double-click) chuột vào file:
+👉 **`start.bat`** (hoặc **`run_windows.bat`**)
 
-Mở Terminal (hoặc Command Prompt / PowerShell trên Windows) và chuyển vào thư mục dự án:
-
-```bash
-cd fengmix/backend
-pip install -r requirements.txt
-```
-
-> **Lưu ý trên Ubuntu / Debian đời mới:** Nếu hệ thống yêu cầu môi trường ảo hoặc gắn cờ hệ thống, bạn có thể tạo venv:
-> ```bash
-> python3 -m venv venv
-> source venv/bin/activate
-> pip install -r backend/requirements.txt
-> ```
+Hệ thống sẽ **tự động hoàn toàn**:
+1. Kiểm tra Python trên máy (nếu chưa cài, script sẽ tự mở link tải Python chính thức).
+2. Tự khởi tạo môi trường ảo `.venv`.
+3. Tự động kiểm tra và chạy cài đặt toàn bộ thư viện cần thiết từ `requirements.txt` (theo mô tả tại `requirements.md`).
+4. Khởi động máy chủ và **tự động mở trình duyệt web** tại `http://localhost:8000`.
 
 ---
 
-### 3. Khởi động ứng dụng
+### 2. Dành cho người dùng Linux / macOS
 
-#### Cách 1: Sử dụng script `start.sh` (Linux / macOS)
-Từ thư mục gốc của dự án, chạy lệnh:
+Mở Terminal và chạy lệnh:
 
 ```bash
 bash start.sh
+# Hoặc chỉ định cổng tùy ý: bash start.sh 8080
 ```
 
-Mặc định server sẽ khởi chạy tại cổng **8000**. Nếu bạn muốn chỉ định cổng khác (ví dụ: cổng 8080):
-```bash
-bash start.sh 8080
-```
+---
 
-#### Cách 2: Khởi chạy trực tiếp bằng Uvicorn (Mọi hệ điều hành)
-Chuyển vào thư mục `backend` và chạy:
+### 3. Cài đặt và khởi chạy thủ công (Mọi hệ điều hành)
+
+Nếu bạn muốn tự quản lý bằng dòng lệnh:
 
 ```bash
+# 1. Cài đặt các thư viện phụ thuộc
+pip install -r requirements.txt
+
+# 2. Khởi chạy server
 cd backend
 python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
