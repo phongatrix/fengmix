@@ -42,3 +42,4 @@ ENV/
 tmp/
 /tmp/youngmix_*.zip
 .vercel
+.env*
